@@ -32,9 +32,9 @@ public class DynamicArray<T> {
 		current++;
 	}
 	
-	public void add(int index, T in) {
+	public void set(int index, T in) {
 		if (index > capacity || index < 0) {
-			throw new IndexOutOfBoundsException(index);
+			throw new IndexOutOfBoundsException();
 		}
 		if (index == capacity) {
 			add(in);
@@ -58,9 +58,23 @@ public class DynamicArray<T> {
 	
 	public T get(int index) {
 		if(index >= current || index < 0) {
-			throw new IndexOutOfBoundsException(index);
+			throw new IndexOutOfBoundsException();
 		}
 		return arr[index];
+	}
+	
+	public int size() {
+		return current;
+	}
+	
+	@Override
+	public String toString() {
+		String ret = "[";
+		for(int i=0; i < current; i++) {
+			ret += " " + arr[i];
+		}
+		ret += " ]";
+		return ret;
 	}
 	
 	private void expandArray() {
